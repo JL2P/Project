@@ -1,1 +1,7 @@
-# 프로젝트에 대한 정보들을 관리하는 저장소 입니다.
+# Project 플리(PlanList)
+
+## 📕 trello
+
+Trello 경로
+
+> https://trello.com/b/ZBYACjpy/planlist
