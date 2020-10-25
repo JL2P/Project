@@ -6,13 +6,13 @@
 
 ## 👨‍👨‍👧‍👧 Members
 
-- #### 정승훈 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 67%;" />shoon2430](https://github.com/shoon2430)
+- #### 정승훈 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 40%;" />shoon2430](https://github.com/shoon2430)
 
-- #### 박민재 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 67%;" />parkmm14](https://github.com/parkmm14)
+- #### 박민재 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 40%;" />parkmm14](https://github.com/parkmm14)
 
-- #### 이명호 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 67%;" />2myungho](https://github.com/2myungho)
+- #### 이명호 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 40%;" />2myungho](https://github.com/2myungho)
 
-- #### 이은송 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 67%;" />eunsongsong](https://github.com/eunsongsong)
+- #### 이은송 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 40%;" />eunsongsong](https://github.com/eunsongsong)
 
 ## 📝 Document
 
