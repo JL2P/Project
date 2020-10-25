@@ -6,7 +6,7 @@
 
 ## 👨‍👨‍👧‍👧 Members
 
-- #### 정승훈 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 40%;" />shoon2430](https://github.com/shoon2430)
+- #### 정승훈 [<img src="img/깃허브_2.png" alt="깃허브" style="zoom: 40%;" />shoon2430](https://github.com/shoon2430)
 
 - #### 박민재 [<img src="img/깃허브.png" alt="깃허브" style="zoom: 40%;" />parkmm14](https://github.com/parkmm14)
 
