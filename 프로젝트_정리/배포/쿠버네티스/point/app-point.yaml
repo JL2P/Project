@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-point-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+spec:
+  type: NodePort
+  ports:
+    - port: 9004
+      targetPort: 9004
+      protocol: TCP
+      name: server-port
+  selector:
+    app: spring-point
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-point-deployment
+spec:
+  selector:
+    matchLabels:
+      app: spring-point
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-point
+    spec:
+      containers:
+        - name: spring-point
+          image: shoon2430/point-service:v2
+          ports:
+            - containerPort: 9004

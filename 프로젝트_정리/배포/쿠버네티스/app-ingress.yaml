@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: "spring-server-ingress"
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/auth*
+            backend:
+              serviceName: "spring-auth-service"
+              servicePort: 9000
+          - path: /api/todos*
+            backend:
+              serviceName: "spring-todo-service"
+              servicePort: 9002
+          - path: /api/groups*
+            backend:
+              serviceName: "spring-group-service"
+              servicePort: 9003
+          - path: /api/points*
+            backend:
+              serviceName: "spring-point-service"
+              servicePort: 9004
+          - path: /api/accounts*
+            backend:
+              serviceName: "spring-account-service"
+              servicePort: 9005
+          - path: /*
+            backend:
+              serviceName: "planit-frontend"
+              servicePort: 80

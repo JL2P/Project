@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-group-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+spec:
+  type: NodePort
+  ports:
+    - port: 9003
+      targetPort: 9003
+      protocol: TCP
+      name: server-port
+  selector:
+    app: spring-group
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-group-deployment
+spec:
+  selector:
+    matchLabels:
+      app: spring-group
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-group
+    spec:
+      containers:
+        - name: spring-group
+          image: shoon2430/group-service:v2
+          ports:
+            - containerPort: 9003

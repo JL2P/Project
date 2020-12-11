@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-account-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+spec:
+  type: NodePort
+  ports:
+    - port: 9005
+      targetPort: 9005
+      protocol: TCP
+      name: server-port
+  selector:
+    app: spring-account
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-account-deployment
+spec:
+  selector:
+    matchLabels:
+      app: spring-account
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: spring-account
+    spec:
+      containers:
+        - name: spring-account
+          image: shoon2430/account-service:v3
+          ports:
+            - containerPort: 9005

@@ -1,0 +1,40 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-todo-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+spec:
+  type: NodePort
+  ports:
+    - port: 9002
+      targetPort: 9002
+      protocol: TCP
+      name: server-port
+  selector:
+    app: spring-todo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-todo-deployment
+spec:
+  selector:
+    matchLabels:
+      app: spring-todo
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-todo
+    spec:
+      containers:
+        - name: spring-todo
+          image: shoon2430/todo-service:v3
+          ports:
+            - containerPort: 9002
+          resources:
+            requests:
+              cpu: 250m
+            limits:
+              cpu: 500m

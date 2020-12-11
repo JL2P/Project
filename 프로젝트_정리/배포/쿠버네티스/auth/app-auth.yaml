@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-auth-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+spec:
+  type: NodePort
+  ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+      name: server-port
+  selector:
+    app: spring-auth
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-auth-deployment
+spec:
+  selector:
+    matchLabels:
+      app: spring-auth
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-auth
+    spec:
+      containers:
+        - name: spring-auth
+          image: shoon2430/auth-service:v2
+          ports:
+            - containerPort: 9000

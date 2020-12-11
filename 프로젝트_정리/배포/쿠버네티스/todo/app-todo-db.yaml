@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-db-server-service
+  labels:
+    app: mariadb
+    tier: database
+spec:
+  ports:
+    - port: 8002
+      targetPort: 3306
+      name: db-port
+  selector: # mysql Pod Should contain same labels
+    app: todo-db
+    tier: database
+  clusterIP: None # We Use DNS, Thus ClusterIP is not relevant
+---
+# Configure 'Deployment' of mysql server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-db
+  labels:
+    app: todo-db
+    tier: database
+spec:
+  selector: # mysql Pod Should contain same labels
+    matchLabels:
+      app: todo-db
+      tier: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: # Must match 'Service' and 'Deployment' selectors
+        app: todo-db
+        tier: database
+    spec:
+      containers:
+        - image: mariadb # image from docker-hub
+          # args:
+          #   - "--ignore-db-dir=lost+found" # Workaround for https://github.com/docker-library/mysql/issues/186
+          name: todo-db
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_USER
+              value: planit
+            - name: MYSQL_PASSWORD
+              value: planit1234
+            - name: MYSQL_DATABASE
+              value: planit_todo
+          ports:
+            - containerPort: 3306
+              name: todo-db
+          volumeMounts: # Mounting voulume obtained from Persistent Volume Claim
+            - name: todo-db-persistent-storage
+              mountPath: /var/lib/mysql #This is the path in the container on which the mounting will take place.
+      volumes:
+        - name: todo-db-persistent-storage # Obtaining 'vloume' from PVC
+          persistentVolumeClaim:
+            claimName: todo-db-pv-claim
