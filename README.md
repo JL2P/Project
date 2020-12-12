@@ -16,6 +16,17 @@
 
 ## 프로젝트
 
+- [플랜잇](https://github.com/JL2P)
+
+  - [Front-end](https://github.com/JL2P/PlanList-Frontend)
+  - [Auth-Service](https://github.com/JL2P/Auth-service)
+  - [Account-Service](https://github.com/JL2P/Account-service)
+  - [Todo-Service](https://github.com/JL2P/Todo-service)
+  - [Group-Service](https://github.com/JL2P/Group-service)
+  - [Point-Service](https://github.com/JL2P/Point-service)
+
+  
+
 ## 📝 Document
 
 - #### [프로젝트 관리](https://github.com/JL2P/Project/wiki)
