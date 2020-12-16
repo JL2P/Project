@@ -1,0 +1,113 @@
+version: "3"
+
+services:
+  # database container
+  # auth-DB    : 8000
+  # todo-DB    : 8002
+  # group-DB   : 8003
+  # point-DB   : 8004
+  # account-DB : 8005
+  docker-authDB:
+    container_name: docker-authDB
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: planit_account
+      MYSQL_USER: planit
+      MYSQL_PASSWORD: planit1234
+    ports:
+      - 8000:3306
+
+  docker-todoDB:
+    container_name: docker-todoDB
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: planit_todo
+      MYSQL_USER: planit
+      MYSQL_PASSWORD: planit1234
+    ports:
+      - 8002:3306
+
+  docker-groupDB:
+    container_name: docker-groupDB
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: planit_group
+      MYSQL_USER: planit
+      MYSQL_PASSWORD: planit1234
+    ports:
+      - 8003:3306
+
+  docker-pointDB:
+    container_name: docker-pointDB
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: planit_point
+      MYSQL_USER: planit
+      MYSQL_PASSWORD: planit1234
+    ports:
+      - 8004:3306
+
+  docker-accountDB:
+    container_name: docker-accountDB
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: planit_account
+      MYSQL_USER: planit
+      MYSQL_PASSWORD: planit1234
+    ports:
+      - 8005:3306
+  # application container
+  # auth-service    : 9000
+  # todo-service    : 9002
+  # group-service   : 9003
+  # point-service   : 9004
+  # account-service : 9005
+  docker-auth:
+    container_name: docker-auth
+    image: shoon2430/auth-compose:v1
+    restart: on-failure
+    depends_on:
+      - docker-authDB
+    ports:
+      - 9000:9000
+
+  docker-todo:
+    container_name: docker-todo
+    image: shoon2430/todo-compose:v1
+    restart: on-failure
+    depends_on:
+      - docker-todoDB
+    ports:
+      - 9002:9002
+
+  docker-group:
+    container_name: docker-group
+    image: shoon2430/group-compose:v1
+    restart: on-failure
+    depends_on:
+      - docker-groupDB
+    ports:
+      - 9003:9003
+
+  docker-point:
+    container_name: docker-point
+    image: shoon2430/point-compose:v1
+    restart: on-failure
+    depends_on:
+      - docker-pointDB
+    ports:
+      - 9004:9004
+
+  docker-account:
+    container_name: docker-account
+    image: shoon2430/account-compose:v1
+    restart: on-failure
+    depends_on:
+      - docker-accountDB
+    ports:
+      - 9005:9005
